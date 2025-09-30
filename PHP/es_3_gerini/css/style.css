@@ -1,0 +1,24 @@
+.crop-container {
+  width: 208.67px;
+  height: 212.5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.crop-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 626px;  
+  height: 425px;
+}
+
+/* Riga 0 */
+.part-0-0 img { left: 0;      top: 0;       }
+.part-0-1 img { left: -208px; top: 0;    }
+.part-0-2 img { left: -417px; top: 0;    }
+
+/* Riga 1 */
+.part-1-0 img { left: 0;      top: -212px;    }
+.part-1-1 img { left: -208px; top: -212px; }
+.part-1-2 img { left: -417px; top: -212px; }
