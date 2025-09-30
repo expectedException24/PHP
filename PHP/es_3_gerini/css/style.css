@@ -1,5 +1,5 @@
 .crop-container {
-  width: 208.67px;
+  width: 190.67px;
   height: 212.5px;
   overflow: hidden;
   position: relative;
@@ -14,11 +14,11 @@
 }
 
 /* Riga 0 */
-.part-0-0 img { left: 0;      top: 0;       }
-.part-0-1 img { left: -208px; top: 0;    }
-.part-0-2 img { left: -417px; top: 0;    }
+.part-0-0 img { left: -36px;        top: 0; }
+.part-0-1 img { left: -213.67px; top: 0; }
+.part-0-2 img { left: -381.34px; top: 0; }
 
 /* Riga 1 */
-.part-1-0 img { left: 0;      top: -212px;    }
-.part-1-1 img { left: -208px; top: -212px; }
-.part-1-2 img { left: -417px; top: -212px; }
+.part-1-0 img { left: -36px;        top: -212.5px; }
+.part-1-1 img { left: -213.67px; top: -212.5px; }
+.part-1-2 img { left: -417.34px; top: -212.5px; }
