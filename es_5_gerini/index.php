@@ -1,5 +1,5 @@
     <?php
-        $GRADES=[7, 5, 6, 8, 9];
+        $GRADES=[7, 5, 6, 8, 9]; // da finire 
     ?>
 <!DOCTYPE html>
 <html lang="en">
