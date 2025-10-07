@@ -1,0 +1,6 @@
+<?php
+    $contacts=[];
+    function addContact()
+
+
+?>
