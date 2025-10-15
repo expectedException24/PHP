@@ -9,7 +9,7 @@
 <body>
   <div class="container mt-5">
     <h2>Modulo Prenotazione</h2>
-    <form action="submit.php" method="get">
+    <form action="gestioneprenotazione.php" method="get">
       <!-- Nome -->
       <div class="mb-3">
         <label for="nome" class="form-label">Nome</label>
