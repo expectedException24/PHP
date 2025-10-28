@@ -68,27 +68,30 @@ function calcPrice(array $menu, string $parking): array {
 ?>
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8" />
     <title>Resoconto</title>
 </head>
+
 <body>
-<?php if ($result !== null): ?>
+    <?php if ($result !== null): ?>
     <?php if ($result['error']): ?>
-        <p style="color:red;">Errore: <?= htmlspecialchars($result['error']) ?></p>
+    <p style="color:red;">Errore: <?= htmlspecialchars($result['error']) ?></p>
     <?php else: ?>
-        <h2>Riepilogo ordine</h2>
-        <ul>
-            <?php foreach ($result['details'] as $d): ?>
-                <li><?= ucfirst($d['item']) ?>: €<?= number_format($d['price'], 2) ?></li>
-            <?php endforeach; ?>
-        </ul>
-        <p>Sconto applicato: €<?= number_format($result['discount'], 2) ?></p>
-        <p>Parcheggio (<?= $result['parking'] ?: 'nessuno' ?>): €<?= number_format($result['parking_cost'], 2) ?></p>
-        <p><strong>Totale: €<?= number_format($result['total'], 2) ?></strong></p>
+    <h2>Riepilogo ordine</h2>
+    <ul>
+        <?php foreach ($result['details'] as $d): ?>
+        <li><?= ucfirst($d['item']) ?>: €<?= number_format($d['price'], 2) ?></li>
+        <?php endforeach; ?>
+    </ul>
+    <p>Sconto applicato: €<?= number_format($result['discount'], 2) ?></p>
+    <p>Parcheggio (<?= $result['parking'] ?: 'nessuno' ?>): €<?= number_format($result['parking_cost'], 2) ?></p>
+    <p><strong>Totale: €<?= number_format($result['total'], 2) ?></strong></p>
     <?php endif; ?>
-<?php else: ?>
+    <?php else: ?>
     <p>Compila il form per visualizzare il riepilogo.</p>
-<?php endif; ?>
+    <?php endif; ?>
 </body>
+
 </html>
