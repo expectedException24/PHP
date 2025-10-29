@@ -11,13 +11,11 @@
 <body>
     <form action="sendData.php" method="POST">
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="name" aria-label="name"
-                aria-describedby="basic-addon2">
+            <input type="text" class="form-control" placeholder="name" aria-label="name" name="name" aria-describedby="basic-addon2">
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">@</span>
-            <input type="text" class="form-control" placeholder="email" aria-label="email"
-                aria-describedby="basic-addon1">
+            <input type="text" class="form-control" placeholder="email" aria-label="email" name="email" aria-describedby="basic-addon1">
         </div>
         <div class="input-group">
             <span class="input-group-text">Messaggio</span>
