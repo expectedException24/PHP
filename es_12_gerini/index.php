@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $prodotti = [
     [
         'name' => 'Prosciutto',
@@ -10,63 +11,40 @@ $prodotti = [
     [
         'name' => 'Rosmarino',
         'price' => 49.99,
-        'desc' => 'Rosmarino coltivato e raccolto a san colombano',
+        'desc' => 'Rosmarino coltivato e raccolto a San Colombano',
         'pic' => './images/rosmarino.jpg',
     ],
     [
         'name' => 'Succo alla mela',
         'price' => 19.99,
-        'desc' => 'Succo 100% Polacco ',
+        'desc' => 'Succo 100% Polacco',
         'pic' => './images/succoallamela.jpg',
     ],
-]; ?>
-<!DOCTYPE html>
-<html lang="en">
+];
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prodotti</title>
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- CSS separato per personalizzazioni aggiuntive (se necessarie) -->
-    <link href="styles.css" rel="stylesheet">
-</head>
-
-<body>
-    <div class="container mt-5">
-        <div class="row">
-            <?php mostraProdotti($prodotti); ?>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-
-</body>
-
-</html>
-<?php
 if (!isset($_SESSION['cart'])) {
-    $_SESSION[''] = [];
-}
-if (!isset($_POST[''])) {
-
+    $_SESSION['cart'] = [];
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    foreach ($prodotti as $index => $prodotto) {
+        if (isset($_POST['add_' . $index])) {
+            $name = $prodotto['name'];
+            if (isset($_SESSION['cart'][$name])) {
+                $_SESSION['cart'][$name]['qty']++;
+            } else {
+                $_SESSION['cart'][$name] = [
+                    'price' => $prodotto['price'],
+                    'qty' => 1
+                ];
+            }
+        }
+    }
+}
 
 function mostraProdotti($prodotti)
 {
-    if (empty($prodotti)) {
-        echo "Nessun prodotto disponibile.";
-        return;
-    }
-
-    $i = 0;
-    foreach ($prodotti as $prodotto) {
-        $i++;
+    foreach ($prodotti as $index => $prodotto) {
         $name = $prodotto['name'];
         $price = $prodotto['price'];
         $desc = $prodotto['desc'];
@@ -79,10 +57,39 @@ function mostraProdotti($prodotti)
         echo '<h5 class="card-title">' . $name . '</h5>';
         echo '<p class="card-text">' . $desc . '</p>';
         echo '<p class="card-text">€ ' . number_format($price, 2, ',', '.') . '</p>';
-        echo '<form method="POST"><button class="btn btn-primary" name="' . $i . '">Add</button></form>';
+        echo '<form method="POST">';
+        echo '<button class="btn btn-primary" name="add_' . $index . '">Aggiungi al carrello</button>';
+        echo '</form>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
     }
-
 }
+?>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prodotti</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>I nostri prodotti</h1>
+            <form action="carrello.php" method="get">
+                <button type="submit" class="btn btn-primary">Ordina merce</button>
+            </form>
+        </div>
+
+        <div class="row">
+            <?php mostraProdotti($prodotti); ?>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
