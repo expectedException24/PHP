@@ -114,18 +114,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </div>
 
-        <?php if($errore): ?>
+        <?php if ($errore): ?>
             <div class="alert alert-danger"><?= htmlspecialchars($errore) ?></div>
         <?php endif; ?>
 
         <form method="POST" class="mb-3">
             <div class="input-group">
-                <input type="number" name="numero_tavolo" class="form-control" placeholder="Numero tavolo (1-10)" required>
+                <input type="number" name="numero_tavolo" class="form-control" placeholder="Numero tavolo (1-10)"
+                    required>
                 <button type="submit" name="aggiungi_tavolo" class="btn btn-success">Aggiungi Tavolo</button>
             </div>
         </form>
 
-        <?php 
+        <?php
         $tavoli_utente = $_SESSION['tavoli'][$_SESSION['utente']] ?? [];
         if (!empty($tavoli_utente)): ?>
             <?php foreach ($tavoli_utente as $numero => $tavolo): ?>
@@ -152,6 +153,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <p>Nessuna comanda ancora.</p>
                         <?php endif; ?>
 
+                        <!-- Pulsante per eliminare il tavolo -->
+                        <a href="destroy.php?tavolo=<?= $numero ?>" class="btn btn-danger mt-2">Reset</a>
+
                         <form method="POST" class="mt-3">
                             <input type="hidden" name="numero_tavolo" value="<?= $numero ?>">
                             <div class="row g-2">
@@ -160,17 +164,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <option value="" disabled selected>Seleziona piatto</option>
                                         <?php foreach ($piatti as $p): ?>
                                             <option value="<?= htmlspecialchars($p['nome']) ?>">
-                                                <?= htmlspecialchars($p['nome']) ?> - € <?= number_format($p['prezzo'], 2, ',', '.') ?>
+                                                <?= htmlspecialchars($p['nome']) ?> - €
+                                                <?= number_format($p['prezzo'], 2, ',', '.') ?>
                                             </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <button type="submit" name="aggiungi_piatto" class="btn btn-outline-primary w-100">Aggiungi Piatto</button>
+                                    <button type="submit" name="aggiungi_piatto" class="btn btn-outline-primary w-100">Aggiungi
+                                        Piatto</button>
                                 </div>
                             </div>
                         </form>
                     </div>
+
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
