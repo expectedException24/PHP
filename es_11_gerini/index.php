@@ -22,7 +22,6 @@ function login($inputUsername, $inputPassword) {
         $_SESSION["utente"] = $inputUsername;
         header("Location: home.php");
         exit;
-        return true;
     } else {
         return false;
     }
