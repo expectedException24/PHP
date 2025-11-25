@@ -9,7 +9,7 @@
 </head>
 <body>
     <?php
-        foreach ($quiz as $index => $q) {
+        /*foreach ($quiz as $index => $q) {
             echo "<div style='margin-bottom:20px; padding:15px; border:1px solid #ccc; border-radius:8px;'>";
             echo "<h3 style='margin-top:0;'>" . htmlspecialchars($q["question"]) . "</h3>";
             echo "<ul style='list-style:none; padding-left:0;'>";
@@ -29,7 +29,7 @@
             echo "</ul>";
             echo "</div>";
         }
-    ?>
+    ?>*/
 
 </body>
 </html>
