@@ -1,35 +1,45 @@
 <?php
-   include('quizdata.php');
+session_start();
+include('quizdata.php');
+
+if (!isset($_SESSION['current_question'])) {
+    $_SESSION['current_question'] = 0;
+}
+
+$total = count($quiz);
+$current = $_SESSION['current_question'];
+$question = $quiz[$current];
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <?php
-        /*foreach ($quiz as $index => $q) {
-            echo "<div style='margin-bottom:20px; padding:15px; border:1px solid #ccc; border-radius:8px;'>";
-            echo "<h3 style='margin-top:0;'>" . htmlspecialchars($q["question"]) . "</h3>";
-            echo "<ul style='list-style:none; padding-left:0;'>";
-            foreach ($q["answers"] as $aIndex => $ans) {
-                echo "
-                    <li style='margin:6px 0;'>
-                        <label>
-                            <input type='checkbox' 
-                                name='q{$index}[]' 
-                                value='{$aIndex}' 
-                                style='margin-right:6px;'>
-                            " . htmlspecialchars($ans) . "
-                        </label>
-                    </li>
-                ";
-            }
-            echo "</ul>";
-            echo "</div>";
-        }
-    ?>*/
+
+<h2>Domanda <?php echo $current; ?>/<?php echo $total; ?></h2>
+
+<form method="post" action="process_answer.php">
+
+    <input type="hidden" name="question_index" value="<?php echo $current; ?>">
+
+    <h3><?php echo htmlspecialchars($question["question"]); ?></h3>
+
+    <?php foreach ($question["answers"] as $i => $answer): ?>
+        <label>
+            <input type="checkbox" name="answer" value="<?php echo $i; ?>">
+            <?php echo htmlspecialchars($answer); ?>
+        </label><br>
+    <?php endforeach; ?>
+
+    <br>
+
+    <?php if ($current < $total - 1): ?>
+        <button type="submit" name="action" value="next">Avanti</button>
+    <?php else: ?>
+        <button type="submit" name="action" value="finish">Finisci</button>
+    <?php endif; ?>
+
+</form>
 
 </body>
 </html>
