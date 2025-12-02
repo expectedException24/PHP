@@ -26,7 +26,7 @@ $question = $quiz[$current];
 
     <?php foreach ($question["answers"] as $i => $answer): ?>
         <label>
-            <input type="checkbox" name="answer" value="<?php echo $i; ?>">
+            <input type="radio" name="answer" value="<?php echo $i; ?>">
             <?php echo htmlspecialchars($answer); ?>
         </label><br>
     <?php endforeach; ?>
