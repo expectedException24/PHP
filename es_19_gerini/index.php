@@ -21,6 +21,7 @@ if ($tablesRes) {
     <?php
 
         echo "<h2>" . htmlspecialchars('customers') . "</h2>";
+        echo "<a href='../es_20_gerini/index.php'> effettua un'ordine </a>";
 
         $res = $conn->query("SELECT * FROM customers ");
 

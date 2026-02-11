@@ -205,6 +205,7 @@ $customersResult = $conn->query("SELECT customerNumber, customerName FROM custom
             <div class="form-info">
                 <strong>ℹ Informazioni:</strong><br>
                 La data di ordine è automaticamente impostata a oggi. La data di consegna è impostata a 7 giorni da oggi.
+                <a href="..\es_19_gerini\index.php">Clicca qui per vedere gli ordini</a>
             </div>
         </form>
     </div>
