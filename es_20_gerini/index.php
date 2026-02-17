@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $prodRes = $conn->query("SELECT buyPrice FROM products WHERE productCode = '$productCode' LIMIT 1");
     $prodRow = $prodRes->fetch_assoc();
-    $priceEach = $prodRow ? $prodRow['buyPrice'] : 0;
+    $priceEach = floatval($_POST['priceEach'] ?? ($prodRow ? $prodRow['buyPrice'] : 0));
 
     $lineRes = $conn->query("SELECT COALESCE(MAX(orderLineNumber), 0) + 1 AS lineNum FROM orderdetails WHERE orderNumber = $newOrderNumber");
     $lineRow = $lineRes->fetch_assoc();
@@ -198,6 +198,11 @@ $customersResult = $conn->query("SELECT customerNumber, customerName FROM custom
             <div class="form-group">
                 <label for="quantity">Quantità *</label>
                 <input id="quantity" type="number" name="quantity" value="1" min="1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="priceEach">Prezzo Unitario *</label>
+                <input id="priceEach" type="number" name="priceEach" value="" min="0" step="0.01" placeholder="Lascia vuoto per usare il prezzo di listino" required>
             </div>
 
             <button type="submit">Crea Ordine</button>
