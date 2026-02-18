@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (!isset($_SESSION["utente"])) {
+    header("Location: ../es_21_gerini/index.php");
+    exit;
+}
 $conn = new mysqli('localhost', 'root', '', 'classicmodels');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $customerNumber = intval($_POST['customerNumber'] ?? 0);
@@ -161,9 +167,28 @@ $customersResult = $conn->query("SELECT customerNumber, customerName FROM custom
             color: #555;
             line-height: 1.6;
         }
+        .logout {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 6px 18px rgba(255, 71, 87, 0.25);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            z-index: 9999;
+        }
+        .logout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 71, 87, 0.35);
+        }
     </style>
 </head>
 <body>
+    <a href="..\es_21_gerini\logout.php" class="logout">Esci</a>
     <div class="container">
         <div class="header">
             <h1>Nuovo Ordine</h1>

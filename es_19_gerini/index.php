@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (!isset($_SESSION["utente"])) {
+    header("Location: ../es_21_gerini/index.php");
+    exit;
+}
 require_once 'connection.php';
 
 $tablesRes = $conn->query("SHOW TABLES");
@@ -19,9 +25,9 @@ if ($tablesRes) {
 </head>
 <body>
     <?php
-
         echo "<h2>" . htmlspecialchars('customers') . "</h2>";
         echo "<a href='../es_20_gerini/index.php'> effettua un'ordine </a>";
+        echo "<a href='../es_21_gerini/logout.php'> Logout</a>";
 
         $res = $conn->query("SELECT * FROM customers ");
 

@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (!isset($_SESSION["utente"])) {
+    header("Location: ../es_21_gerini/index.php");
+    exit;
+}
 require_once 'connection.php';
 
 $customerNumber = $_GET['customerNumber'];
